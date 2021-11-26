@@ -1,0 +1,89 @@
+﻿@using ProjeMY.Models.Entity
+@model User
+
+@{
+    ViewBag.Title = "Guncelle";
+    Layout = "~/Views/Shared/LoggedInLayout.cshtml";
+}
+
+<head>
+    <script type="text/javascript"> 
+        function getConfirmation() {
+            var retVal = confirm("Güncellemek istediğinize emin misiniz?");
+            if (retVal == true) {
+
+                return true;
+            } else {
+
+                return false;
+            }
+        }
+    </script>
+</head>
+<h2>Guncelle</h2>
+@using (Html.BeginForm())
+{
+    
+    <div class="form-group">
+
+        <div class="col-md-10">
+            @Html.HiddenFor(m => m.UserId, new { @class = "form-control" })
+            @Html.HiddenFor(m => m.Statu, new { @class = "form-control" })
+           
+            @Html.HiddenFor(m => m.Email, new { @class = "form-control" })
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(m => m.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(m => m.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(m => m.Surname, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Surname, new { @class = "form-control" })
+
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(m => m.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br />
+    <br />
+    <div>
+
+        <input type="submit" value="Kaydet" class="btn btn-info" onclick="getConfirmation();"/>
+
+    </div>
+}
+
+

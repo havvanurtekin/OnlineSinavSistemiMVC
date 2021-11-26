@@ -1,0 +1,53 @@
+﻿@using ProjeMY.Models.Entity
+@model List<User>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LoggedInLayout.cshtml";
+    User u = (User)Session["User"];
+
+}
+<link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+<head>
+    <script type="text/javascript">
+
+        function getDel() {
+            var retVal = confirm("Silmek istediğinize emin misiniz?");
+            if (retVal == true) {
+
+                return true;
+            } else {
+
+                return false;
+            }
+        }
+    </script>
+</head>
+<table class="table table-bordered">
+    <tr>
+        <th> User Id</th>
+        <th> User Name</th>
+        <th> Name</th>
+        <th> Surname</th>
+        <th> Email</th>
+        <th> Statu</th>
+        <th> Sil</th>
+    </tr>
+
+    <tbody>
+        @foreach(var usr in Model)
+        {
+            if ((usr.Statu == "ogretmen" && usr.UserId == u.UserId) || usr.Statu == "ogrenci")
+            {
+                <tr>
+                    <td>@usr.UserId</td>
+                    <td>@usr.UserName</td>
+                    <td>@usr.FirstName</td>
+                    <td>@usr.Surname</td>
+                    <td>@usr.Email</td>
+                    <td>@usr.Statu</td>
+                    <td><a href="/Users/Sil/@usr.UserId" class="btn btn-danger" onclick="getDel();"><i class="fa fa-trash-o"></i> Sil</a></td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

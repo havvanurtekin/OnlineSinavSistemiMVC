@@ -1,0 +1,32 @@
+﻿@using ProjeMY.Models.Entity
+@model List<tblDersler>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LoggedInLayout.cshtml";
+}
+
+<h2>Dersler</h2>
+<table class="table table-bordered">
+    <tr>
+        <th> Drs Id</th>
+        <th> User Id</th> 
+        <th> Sınav 1 Puanı</th>
+        <th> Sınav 2 Puanı</th>
+        <th> Sınav 3 Puanı</th>
+        <th> Başarı Puanı</th>
+    </tr>
+
+    <tbody>
+        @foreach (var drs in Model)
+        {
+            <tr>
+                <td>@drs.DersId</td>
+                <td>@drs.UserId</td>
+                <td>@drs.Sinav1</td>
+                <td>@drs.Sinav2</td>
+                <td>@drs.Sinav3</td>
+                <td>@drs.Basari</td>
+            </tr>
+        }
+    </tbody>
+</table>

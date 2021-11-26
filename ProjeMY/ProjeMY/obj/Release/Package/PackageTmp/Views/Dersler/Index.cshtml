@@ -1,0 +1,111 @@
+﻿@using ProjeMY.Models.Entity
+@model List<tblDersler>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LoggedInLayout.cshtml";
+    User usr = (User)Session["User"];
+}
+<link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+<head>
+    <script type="text/javascript">
+          
+        function getDel() {
+            var retVal = confirm("Silmek istediğinize emin misiniz?");
+            if (retVal == true) {
+
+                return true;
+            } else {
+
+                return false;
+            }
+        }
+    </script>
+</head>
+<h2>Dersler</h2>
+@if (usr.Statu == "ogrenci")
+{
+    <table class="table table-bordered">
+        <tr>
+            <th> Ders Id</th>
+            <th> Ders Adı</th>
+            <th> User Id</th>
+            <th> Öğrenci Adı</th>
+            <th> Sınav 1 Puanı</th>
+            <th> Sınav 2 Puanı</th>
+            <th> Sınav 3 Puanı</th>
+            <th> Ortalama</th>
+            <th> Başarı</th>
+
+
+        </tr>
+
+        <tbody>
+            @foreach (var drs in Model)
+            {
+                if (usr.UserId == drs.UserId)
+                {
+                    <tr>
+                        <td>@drs.DersId</td>
+                        <td>@drs.DersAdi</td>
+                        <td>@drs.UserId</td>
+                        <td>@drs.User.FirstName @drs.User.Surname</td>
+                        <td>@drs.Sinav1</td>
+                        <td>@drs.Sinav2</td>
+                        <td>@drs.Sinav3</td>
+                        <td>@drs.Ortalama</td>
+                        <td>@drs.Basari</td>
+
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+}
+@if (usr.Statu == "ogretmen")
+{
+    <table class="table table-bordered">
+        <tr>
+            <th> Ders Id</th>
+            <th> Ders Adı</th>
+            <th> User Id</th>
+            <th> Öğrenci Adı</th>
+            <th> Sınav 1 Puanı</th>
+            <th> Sınav 2 Puanı</th>
+            <th> Sınav 3 Puanı</th>
+            <th> Ortalama</th>
+            <th> Başarı</th>
+            <th> Güncelle</th>
+            <th> Sil</th>
+
+
+        </tr>
+
+        <tbody>
+            @foreach (var drs in Model)
+            {
+                if (drs.User.Statu == "ogrenci")
+                {
+            <tr>
+                <td>@drs.DersId</td>
+                <td>@drs.DersAdi</td>
+                <td>@drs.UserId</td>
+                <td>@drs.User.FirstName @drs.User.Surname</td>
+                <td>@drs.Sinav1</td>
+                <td>@drs.Sinav2</td>
+                <td>@drs.Sinav3</td>
+                <td>@drs.Ortalama</td>
+                <td>@drs.Basari</td>
+                <td><a href="/Dersler/Getir/@drs.DersId" class="btn btn-primary"><i class="fa fa-edit"></i> Güncelle</a></td>
+                <td><a href="/Dersler/Sil/@drs.DersId" class="btn btn-danger" onclick="getDel();"><i class="fa fa-trash-o"></i> Sil</a></td>
+            </tr>
+                }
+
+            }
+        </tbody>
+    </table>
+
+    <a href="/Dersler/DersEkle/" class="btn btn-warning">Ders Ekle</a>
+}
+
+

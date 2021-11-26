@@ -1,0 +1,91 @@
+﻿@using ProjeMY.Models.Entity
+@model tblDersler
+
+@{
+    ViewBag.Title = "DersEkle";
+    Layout = "~/Views/Shared/LoggedInLayout.cshtml";
+    
+
+}
+<h2>Ders Ekle</h2>
+<form class="form-group" method="post">
+    <hr />
+    <div class="form-group">
+        @Html.LabelFor(model => model.DersAdi, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-lg-10">
+
+            <select id="DersAdi" name="DersAdi" class="form-control">
+                <option selected="selected" value="matematik">Matematik</option>
+                <option value="turkce">Türkçe</option>
+                <option value="fen">Fen Bilgisi</option>
+            </select>
+
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.UserId, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.UserId, "", new { @style = "text-danger" })
+        </div>
+    </div>
+    <br />
+    <br />
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Sinav1, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Sinav1, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Sinav1, "", new { @style = "text-danger" })
+
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(model => model.Sinav2, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Sinav2, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Sinav2, "", new { @style = "text-danger" })
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(model => model.Sinav3, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Sinav3, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Sinav3, "", new { @style = "text-danger" })
+        </div>
+    </div>
+    <br />
+    <br />
+
+
+
+    <div>
+        <button class="btn btn-info" id="btn1">Ders Ekle</button>
+    </div>
+    @if (TempData["Message"] != null)
+    {
+        if (TempData["Message"].Equals("Ders Başarıyla Eklendi!"))
+        {
+            <div class="alert alert-success fade in">
+                <a href="/Dersler/Index/" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Success!</strong> @TempData["Message"]
+            </div>
+        }
+        else if (TempData["Message"].Equals("Kullanıcı Bulunamadı!"))
+        {
+            <div class="alert alert-warning fade in">
+                <a href="/Dersler/DersEkle/" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Failed!</strong> @TempData["Message"]
+            </div>
+        }
+    }
+</form>
+
+

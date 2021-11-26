@@ -1,0 +1,70 @@
+﻿@using ProjeMY.Models.Entity
+@model User
+@{
+    ViewBag.Title = "Profil";
+    Layout = "~/Views/Shared/LoggedInLayout.cshtml";
+    User usr = (User) Session["User"];
+
+}
+
+<h2>Profil</h2>
+<br />
+
+<br />
+<form class="form-group" method="post">
+    <div class="form-group">
+        @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <label>@usr.UserId</label>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <label>@usr.UserName</label>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <label>@usr.FirstName</label>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(model => model.Surname, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <label>@usr.Surname</label>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <label>@usr.Email</label>
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(model => model.Statu, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <label>@usr.Statu</label>
+        </div>
+    </div>
+  
+    <div>
+        <a href="/Profil/Guncelle/@usr.UserId" class="btn btn-primary">Güncelle</a>
+    </div>   
+        
+    
+   
+    
+</form>

@@ -1,0 +1,66 @@
+﻿@using ProjeMY.Models.Entity
+@model tblDersler
+@{
+    ViewBag.Title = "Getir";
+    Layout = "~/Views/Shared/LoggedInLayout.cshtml";
+   
+}
+
+
+@using (Html.BeginForm("Getir", "Dersler", FormMethod.Post))
+{
+
+<div class="form-group">
+    
+    <div class="col-md-10">
+        @Html.HiddenFor(m => m.DersId, new { @class = "form-control" })
+        @Html.HiddenFor(m => m.Ortalama, new { @class = "form-control" })
+        @Html.HiddenFor(m => m.DersAdi, new { @class = "form-control" })
+        @Html.HiddenFor(m => m.Basari, new { @class = "form-control" })
+
+        @Html.HiddenFor(m => m.UserId, new { @class = "form-control" })
+        @Html.HiddenFor(m => m.User.Statu, new { @class = "form-control" })
+        @Html.HiddenFor(m => m.User.ConfirmPassword, new { @class = "form-control" })
+        @Html.HiddenFor(m => m.User.FirstName, new { @class = "form-control" })
+        @Html.HiddenFor(m => m.User.Email, new { @class = "form-control" })
+        @Html.HiddenFor(m => m.User.Surname, new { @class = "form-control" })
+        @Html.HiddenFor(m => m.User.Password, new { @class = "form-control" })
+        @Html.HiddenFor(m => m.User.UserId, new { @class = "form-control" })
+        @Html.HiddenFor(m => m.User.UserName, new { @class = "form-control" })
+      
+    </div>
+</div>
+<br />
+<br />
+<div class="form-group">
+    @Html.LabelFor(m => m.Sinav1, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Sinav1, new { @class = "form-control" })
+    </div>
+</div>
+<br />
+<br />
+<div class="form-group">
+    @Html.LabelFor(m => m.Sinav2, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Sinav2, new { @class = "form-control" })
+
+    </div>
+</div>
+<br />
+<br />
+<div class="form-group">
+    @Html.LabelFor(m => m.Sinav3, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Sinav3, new { @class = "form-control" })
+
+    </div>
+</div>
+<br />
+<br />
+<div>
+    <input type="submit" value="Kaydet" class="btn btn-info" />
+    
+</div>
+}
+

@@ -1,0 +1,86 @@
+﻿@using ProjeMY.Models.Entity
+
+
+@{
+    ViewBag.Title = "LoggedInLayout";
+    User usr = (User)Session["User"];
+   
+}
+<link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Online Sınav Sistemi</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/Users/AnaSayfa/"><i class="fa fa-user-circle-o"></i> @usr.FirstName @usr.Surname</a>
+            </div>
+            <ul class="nav navbar-right">
+                <li class="active"><a href="/Users/LogOut/"><i class="fa fa-sign-out"></i> Log Out</a></li>
+            </ul>
+        </div>
+    </nav>
+    @if (@usr.Statu == "ogretmen")
+    {
+
+<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:17%; margin-top:auto">
+   
+    <a href="/Profil/Index/" class="w3-bar-item w3-button"><i class="fa fa-user"></i> Profil</a>
+    <a href="/Dersler/Index/" class="w3-bar-item w3-button"><i class="fa fa-book"></i> Dersler</a>
+    <a href="/Sinavlar/Sinavlar/" class="w3-bar-item w3-button"><i class="fa fa-file-text"></i> Sınav Hazırla</a>
+    <a href="/Users/Index/" class="w3-bar-item w3-button"><i class="fa fa-users"></i> Kullanıcılar</a>
+</div>
+    }
+
+    @if (@usr.Statu == "ogrenci")
+    {
+
+<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:17%">
+    
+    <a href="/Profil/Index/" class="w3-bar-item w3-button"><i class="fa fa-user-o"></i> Profil</a>
+    <a href="/Dersler/Index/" class="w3-bar-item w3-button"><i class="fa fa-book"></i> Dersler</a>
+    <a href="/Sinavlar/Sinavlar/" class="w3-bar-item w3-button"><i class="fa fa-file-o"></i> Sınav Ol</a>
+
+</div>
+    }
+
+
+    <script>
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+        }
+
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+    </script>
+
+
+    <div class="container"  style="margin-left:auto">
+        @RenderBody()
+    </div>
+    <script>
+        var sessionTimeoutWarning = @Session.Timeout -1;
+        var sTimeout = parseInt(sessionTimeoutWarning) * 60 * 1000;
+        setTimeout('SessionEnd', sTimeout);
+
+        function SessionEnd() {
+            window.location = "/Users/Login";
+        }
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,13 @@
+﻿@using ProjeMY.Models.Entity
+@model User
+@{
+    ViewBag.Title = "AnaSayfa";
+    Layout = "~/Views/Shared/LoggedInLayout.cshtml";
+    User usr = (User)Session["User"];
+
+}
+
+
+
+<h2>Burası Senin Anasayfan</h2>
+

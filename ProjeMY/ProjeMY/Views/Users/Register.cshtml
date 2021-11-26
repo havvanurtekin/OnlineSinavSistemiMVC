@@ -1,0 +1,105 @@
+﻿@using ProjeMY.Models.Entity
+@model User
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<h2>Registiration Page</h2>
+<br />
+<br />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <form class="form-group" method="post">
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.UserName, "", new { @style = "color:red" })
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.FirstName, "", new { @style = "color:red" })
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Surname, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Surname, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Surname, "", new { @style = "color:red" })
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @style = "color:red" })
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Password, "", new { @style = "color:red" })
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="form-group">
+            @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @style = "color:red" })
+
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Statu, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-lg-10">
+                <fieldset>
+                    <select id="Statu" name="Statu" class="form-control">
+                        <option selected="selected" value="ogrenci">Öğrenci</option>
+                        <option value="ogretmen">Öğretmen</option>
+                    </select>
+                </fieldset>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div>
+            <button class="btn btn-info" id="btn1">Sign Up</button>
+        </div>
+        @if (TempData["Message"] != null)
+        {
+            if (TempData["Message"].Equals("Registered Successfully"))
+            {
+                <div class="alert alert-success fade in">
+                    <a href="/Users/Login/" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Success!</strong> @TempData["Message2"]
+                </div>
+            }
+        }
+    </form>
+}
+
+
+    <div>
+        @Html.ActionLink("LogIn", "Login")
+    </div>
+
